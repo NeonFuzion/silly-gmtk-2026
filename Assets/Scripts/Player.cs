@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     Vector2 movement;
     new Rigidbody2D rigidbody;
     SpriteRenderer spriteRenderer;
+    BoxCollider2D boxCollider;
     PlayerState playerState;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,13 +20,21 @@ public class Player : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Movement();
-        Burn();
+        JumpCheck();
+        if (sun) Burn();
+    }
+
+    bool IsGrounded()
+    {
+        Vector3 offset = Vector3.down * boxCollider.size.y / 2;
+        return Physics2D.OverlapCircle(transform.position + offset, 0.2f, LayerMask.GetMask("Ground"));
     }
 
     void Movement()
@@ -51,6 +60,31 @@ public class Player : MonoBehaviour
         {
 
             spriteRenderer.color = Color.red;
+        }
+    }
+    
+    void JumpCheck()
+    {
+        if (IsGrounded())
+        {
+            if (playerState != PlayerState.Grounded && currentJumpBuffer > 0)
+            {
+                currentJumpBuffer = 0;
+                playerState = PlayerState.Grounded;
+                Jump(InputActionPhase.Started);
+            }
+            if (playerState != PlayerState.Jumping)
+            {
+                playerState = PlayerState.Grounded;
+            }
+        }
+        else
+        {
+            if (rigidbody.linearVelocityY >= 0) return;
+            playerState = PlayerState.Airborne;
+
+            if (playerState != PlayerState.Grounded) return;
+            currentCoyoteTime = coyoteTime;
         }
     }
 
