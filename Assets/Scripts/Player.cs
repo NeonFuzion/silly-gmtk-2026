@@ -5,13 +5,11 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float runAccelRate, airborneAccelRate, runDecelRate, airborneDecelRate, maxRunSpeed;
     [SerializeField] float jumpForce, jumpReleaseMultiplier, coyoteTime, jumpBuffer;
-    [SerializeField] Transform sun;
 
     float accelRate, decelRate, currentJumpBuffer, currentCoyoteTime;
 
-    Vector2 movement;
+    Vector2 movement, respawnPosition;
     new Rigidbody2D rigidbody;
-    SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
     PlayerState playerState;
 
@@ -19,7 +17,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -28,7 +25,6 @@ public class Player : MonoBehaviour
     {
         Movement();
         JumpCheck();
-        if (sun) Burn();
     }
 
     bool IsGrounded()
@@ -47,20 +43,6 @@ public class Player : MonoBehaviour
         float speedDif = targSpd - rigidbody.linearVelocityX;
         float horizontal = speedDif * currentAccelRate * Time.deltaTime;
         rigidbody.AddForce(horizontal * Vector2.right, ForceMode2D.Force);
-    }
-
-    void Burn()
-    {
-        Vector2 distanceVector = sun.position - transform.position;
-        if (Physics2D.Raycast(transform.position, distanceVector, distanceVector.magnitude, LayerMask.GetMask("Ground")))
-        {
-            spriteRenderer.color = Color.white;
-        }
-        else
-        {
-
-            spriteRenderer.color = Color.red;
-        }
     }
     
     void JumpCheck()
@@ -109,6 +91,11 @@ public class Player : MonoBehaviour
             if (rigidbody.linearVelocity.y > 0)
                 rigidbody.linearVelocity = new(rigidbody.linearVelocity.x, rigidbody.linearVelocity.y * jumpReleaseMultiplier);
         }
+    }
+
+    public void RespawnPlayer()
+    {
+        transform.position = respawnPosition;
     }
 
     public void MovementInput(InputAction.CallbackContext context)
