@@ -42,7 +42,7 @@ public class Sun : MonoBehaviour
         }
     }
 
-    void Freeze()
+    public void Freeze()
     {
         isFrozen = true;
     }
