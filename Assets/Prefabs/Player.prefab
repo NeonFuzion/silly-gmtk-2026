@@ -242,7 +242,6 @@ MonoBehaviour:
   jumpReleaseMultiplier: 0.5
   coyoteTime: 0.1
   jumpBuffer: 0.16
-  sun: {fileID: 0}
 --- !u!50 &6976723209163805293
 Rigidbody2D:
   serializedVersion: 5
@@ -259,7 +258,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 08459146dcc0f69438338f77f98f348c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

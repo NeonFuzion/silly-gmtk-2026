@@ -7,17 +7,19 @@ public class Sun : MonoBehaviour
     [SerializeField] Transform player, sun;
     [SerializeField] UnityEvent onBurn, onUnburn;
 
-    bool isBurning;
+    bool isBurning, isFrozen;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isBurning = false;
+        isFrozen = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isFrozen) return;
         transform.eulerAngles += Vector3.forward * rotationSpeed * Time.deltaTime;
 
         Burn();
@@ -26,17 +28,22 @@ public class Sun : MonoBehaviour
     void Burn()
     {
         Vector2 distanceVector = player.position - sun.position;
-        if (Physics2D.Raycast(sun.position, distanceVector, distanceVector.magnitude + 1, LayerMask.GetMask("Player")))
-        {
-            if (isBurning) return;
-            isBurning = true;
-            onBurn?.Invoke();
-        }
-        else
+        if (Physics2D.Raycast(sun.position, distanceVector, distanceVector.magnitude, LayerMask.GetMask("Ground")))
         {
             if (!isBurning) return;
             isBurning = false;
             onUnburn?.Invoke();
         }
+        else
+        {
+            if (isBurning) return;
+            isBurning = true;
+            onBurn?.Invoke();
+        }
+    }
+
+    void Freeze()
+    {
+        isFrozen = true;
     }
 }
