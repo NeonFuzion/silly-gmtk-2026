@@ -105,6 +105,12 @@ public class Player : MonoBehaviour
         respawnPosition = respawn.position;
     }
 
+    public void MoveLevels(Transform respawn)
+    {
+        SetRespawn(respawn);
+        RespawnPlayer();
+    }
+
     public void MovementInput(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();

@@ -69,4 +69,11 @@ public class Sun : MonoBehaviour
         transform.position = resetPosition;
         transform.eulerAngles = Vector3.forward * resetAngle;
     }
+
+    public void MoveLevel(Transform target)
+    {
+        Move(target);
+        ResetTransform();
+        Unfreeze();
+    }
 }
