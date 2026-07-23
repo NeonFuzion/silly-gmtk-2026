@@ -3,10 +3,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Resetter : MonoBehaviour
+public class Level : MonoBehaviour
 {
     [SerializeField] List<Transform> targets;
-    [SerializeField] UnityEvent onReset;
+    [SerializeField] UnityEvent onReset, onTransition;
 
     Vector3[] positions, eulerAngles;
 
@@ -23,8 +23,15 @@ public class Resetter : MonoBehaviour
         
     }
 
+    public void Transition()
+    {
+        if (!gameObject.activeInHierarchy) return;
+        onTransition?.Invoke();
+    }
+
     public void ResetLevel()
     {
+        if (!gameObject.activeInHierarchy) return;
         for (int i = 0; i < targets.Count; i++)
         {
             targets[i].position = positions[i];

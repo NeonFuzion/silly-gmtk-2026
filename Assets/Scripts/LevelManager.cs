@@ -3,9 +3,10 @@ using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] Transition[] transitions;
+    [SerializeField] Level[] level;
 
     int currentLevel;
+    bool levelComplete;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,12 +27,24 @@ public class LevelManager : MonoBehaviour
 
     public void IncrementLevel()
     {
-        SetLevel(currentLevel + 1);
+        currentLevel++;
     }
 
     public void EndLevel()
     {
-        transitions[currentLevel].TransitionLevel();
+        if (!levelComplete) return;
+        level[currentLevel].Transition();
+        levelComplete = false;
+    }
+
+    public void ResetLevel()
+    {
+        level[currentLevel].ResetLevel();
+    }
+
+    public void SetLevelComplete()
+    {
+        levelComplete = true;
     }
 
     public void TransitionInput(InputAction.CallbackContext context)

@@ -8,12 +8,18 @@ public class Sun : MonoBehaviour
     [SerializeField] UnityEvent onBurn, onUnburn;
 
     bool isBurning, isFrozen;
+    float resetAngle;
+
+    Vector2 resetPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isBurning = false;
         isFrozen = false;
+        resetAngle = transform.eulerAngles.z;
+
+        resetPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -54,6 +60,13 @@ public class Sun : MonoBehaviour
 
     public void Move(Transform target)
     {
-        transform.position = new (target.position.x, transform.position.y, -10);
+        resetPosition = new (target.position.x, transform.position.y);
+        transform.position = new (resetPosition.x, resetPosition.y, -10);
+    }
+
+    public void ResetTransform()
+    {
+        transform.position = resetPosition;
+        transform.eulerAngles = Vector3.forward * resetAngle;
     }
 }
