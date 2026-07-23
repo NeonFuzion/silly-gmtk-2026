@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        respawnPosition = transform.position;
+
         rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
@@ -96,6 +98,11 @@ public class Player : MonoBehaviour
     public void RespawnPlayer()
     {
         transform.position = respawnPosition;
+    }
+
+    public void SetRespawn(Transform respawn)
+    {
+        respawnPosition = respawn.position;
     }
 
     public void MovementInput(InputAction.CallbackContext context)

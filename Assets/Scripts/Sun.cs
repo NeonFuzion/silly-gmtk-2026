@@ -46,4 +46,14 @@ public class Sun : MonoBehaviour
     {
         isFrozen = true;
     }
+
+    public void Unfreeze()
+    {
+        isFrozen = false;
+    }
+
+    public void Move(Transform target)
+    {
+        transform.position = new (target.position.x, transform.position.y, -10);
+    }
 }

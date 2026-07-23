@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Resetter : MonoBehaviour
 {
     [SerializeField] List<Transform> targets;
+    [SerializeField] UnityEvent onReset;
 
     Vector3[] positions, eulerAngles;
 
@@ -28,5 +30,7 @@ public class Resetter : MonoBehaviour
             targets[i].position = positions[i];
             targets[i].eulerAngles = eulerAngles[i];
         }
+
+        onReset?.Invoke();
     }
 }
