@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     {
         Movement();
         JumpCheck();
+        CheckKill();
     }
 
     bool IsGrounded()
@@ -70,6 +71,12 @@ public class Player : MonoBehaviour
             if (playerState != PlayerState.Grounded) return;
             currentCoyoteTime = coyoteTime;
         }
+    }
+    
+    void CheckKill()
+    {
+        if (transform.position.y > -5) return;
+        
     }
 
     void Jump(InputActionPhase phase)

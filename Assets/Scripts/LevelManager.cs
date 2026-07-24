@@ -3,15 +3,20 @@ using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] MainCamera mainCamera;
+    [SerializeField] Sun sun;
+    [SerializeField] Player player;
     [SerializeField] Level[] level;
 
-    int currentLevel;
+    
+
+    int levelIndex;
     bool levelComplete;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        mainCamera = GetComponent<MainCamera>();
     }
 
     // Update is called once per frame
@@ -22,24 +27,30 @@ public class LevelManager : MonoBehaviour
 
     public void SetLevel(int level)
     {
-        currentLevel = level;
+        levelIndex = level;
     }
 
     public void IncrementLevel()
     {
-        currentLevel++;
+        levelIndex++;
     }
 
     public void EndLevel()
     {
         if (!levelComplete) return;
-        level[currentLevel].Transition();
+        IncrementLevel();
+        Level currentLevel = level[levelIndex];
+        sun.MoveLevel(currentLevel.transform);
+        currentLevel.SetNewRespawn(player);
+        mainCamera.SetTarget(currentLevel.transform);
         levelComplete = false;
     }
 
     public void ResetLevel()
     {
-        level[currentLevel].ResetLevel();
+        player.RespawnPlayer();
+        sun.ResetTransform();
+        level[levelIndex].ResetLevel();
     }
 
     public void SetLevelComplete()

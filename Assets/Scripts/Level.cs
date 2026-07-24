@@ -5,8 +5,9 @@ using UnityEngine.Events;
 
 public class Level : MonoBehaviour
 {
+    [SerializeField] Transform spawnPoint;
     [SerializeField] List<Transform> targets;
-    [SerializeField] UnityEvent onReset, onTransition;
+    [SerializeField] UnityEvent onReset;
 
     Vector3[] positions, eulerAngles;
 
@@ -23,12 +24,6 @@ public class Level : MonoBehaviour
         
     }
 
-    public void Transition()
-    {
-        if (!gameObject.activeInHierarchy) return;
-        onTransition?.Invoke();
-    }
-
     public void ResetLevel()
     {
         if (!gameObject.activeInHierarchy) return;
@@ -39,5 +34,10 @@ public class Level : MonoBehaviour
         }
 
         onReset?.Invoke();
+    }
+
+    public void SetNewRespawn(Player player)
+    {
+        player.MoveLevels(spawnPoint);
     }
 }
