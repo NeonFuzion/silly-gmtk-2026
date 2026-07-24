@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
     
     void CheckKill()
     {
-        if (transform.position.y > -5) return;
+        if (transform.position.y > -10) return;
         EventManager.Instance.OnPlayerDeath.Invoke();
     }
 

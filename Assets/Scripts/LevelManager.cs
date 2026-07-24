@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Sun sun;
     [SerializeField] Player player;
     [SerializeField] Level[] level;
+    [SerializeField] UnityEvent onLevelComplete;
 
     int levelIndex;
     bool levelComplete;
@@ -28,22 +30,18 @@ public class LevelManager : MonoBehaviour
         levelIndex = level;
     }
 
-    public void IncrementLevel()
-    {
-        levelIndex++;
-    }
-
     public void EndLevel()
     {
         if (!levelComplete) return;
-        IncrementLevel();
+        if (levelIndex >= level.Length - 1) return;
+        levelIndex++;
+        levelComplete = false;
+        onLevelComplete?.Invoke();
 
-        if (levelIndex >= level.Length) return;
         Level currentLevel = level[levelIndex];
         sun.MoveLevel(currentLevel.transform);
         currentLevel.SetNewRespawn(player);
         mainCamera.SetTarget(currentLevel.transform);
-        levelComplete = false;
     }
 
     public void ResetLevel()
