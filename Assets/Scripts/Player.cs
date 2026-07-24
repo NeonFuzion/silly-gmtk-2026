@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
     void CheckKill()
     {
         if (transform.position.y > -5) return;
-        
+        EventManager.Instance.OnPlayerDeath.Invoke();
     }
 
     void CheckAnimation()
