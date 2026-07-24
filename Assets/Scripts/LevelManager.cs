@@ -8,8 +8,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Player player;
     [SerializeField] Level[] level;
 
-    
-
     int levelIndex;
     bool levelComplete;
 
@@ -39,6 +37,8 @@ public class LevelManager : MonoBehaviour
     {
         if (!levelComplete) return;
         IncrementLevel();
+
+        if (levelIndex >= level.Length) return;
         Level currentLevel = level[levelIndex];
         sun.MoveLevel(currentLevel.transform);
         currentLevel.SetNewRespawn(player);

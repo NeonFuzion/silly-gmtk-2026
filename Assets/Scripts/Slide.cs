@@ -7,7 +7,7 @@ public class Slide : MonoBehaviour
     [SerializeField] float slideDuration, cooldown;
 
     float slideTime;
-    int index;
+    int index, indexShift;
     bool isMoving;
 
     Vector2 direction, lastPosition;
@@ -16,15 +16,13 @@ public class Slide : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        slideTime = 0;
-        index = 0;
-
         positions = new Vector2[transform.childCount];
         for (int i = 0; i < positions.Length; i++)
         {
             positions[i] = transform.GetChild(i).position;
         }
-        direction = positions[1] - positions[0];
+
+        Initialize();
     }
 
     // Update is called once per frame
@@ -36,7 +34,9 @@ public class Slide : MonoBehaviour
             float progress = slideTime / slideDuration;
             transform.position = lastPosition + progress * direction;
 
-            if (slideTime < slideDuration) return;
+            if (progress < 1) return;
+            transform.position = lastPosition + direction;
+            slideTime = 0;
             isMoving = false;
         }
         else
@@ -44,8 +44,26 @@ public class Slide : MonoBehaviour
             slideTime = Mathf.Min(slideTime + Time.deltaTime, cooldown);
 
             if (slideTime < cooldown) return;
+            int lastIndex = index;
+            int nextIndex = index + indexShift;
+            if (nextIndex != Mathf.Clamp(nextIndex, 0, positions.Length - 1)) indexShift = -indexShift;
+            index = index + indexShift;
+
             isMoving = true;
-            direction = positions[index + 1] - positions[index++];
+            slideTime = 0;
+            lastPosition = positions[lastIndex];
+            direction = positions[index] - lastPosition;
         }
+    }
+
+    public void Initialize()
+    {
+        slideTime = 0;
+        index = 0;
+        indexShift = 1;
+
+        lastPosition = positions[0];
+        direction = positions[1] - lastPosition;
+        transform.position = lastPosition;
     }
 }
