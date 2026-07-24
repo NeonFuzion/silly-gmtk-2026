@@ -5,6 +5,11 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float runAccelRate, airborneAccelRate, runDecelRate, airborneDecelRate, maxRunSpeed;
     [SerializeField] float jumpForce, jumpReleaseMultiplier, coyoteTime, jumpBuffer;
+    [SerializeField] SpriteRenderer sprite;
+    [SerializeField] Animator animator;
+
+    int walkAnimationHash = Animator.StringToHash("PlayerWalk"),
+        idleAnimationHash = Animator.StringToHash("PlayerIdle");
 
     float accelRate, decelRate, currentJumpBuffer, currentCoyoteTime;
 
@@ -26,8 +31,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
-        JumpCheck();
+        CheckJump();
         CheckKill();
+        CheckAnimation();
     }
 
     bool IsGrounded()
@@ -48,7 +54,7 @@ public class Player : MonoBehaviour
         rigidbody.AddForce(horizontal * Vector2.right, ForceMode2D.Force);
     }
     
-    void JumpCheck()
+    void CheckJump()
     {
         if (IsGrounded())
         {
@@ -77,6 +83,20 @@ public class Player : MonoBehaviour
     {
         if (transform.position.y > -5) return;
         
+    }
+
+    void CheckAnimation()
+    {
+        if (movement.x != 0)
+        {
+            sprite.flipX = movement.x < 0;
+            animator.CrossFade(walkAnimationHash, 0, 0);
+        }
+        else
+        {
+            if (Mathf.Abs(rigidbody.linearVelocityX) > 0.5f) return;
+            animator.CrossFade(idleAnimationHash, 0, 0);
+        }
     }
 
     void Jump(InputActionPhase phase)
@@ -120,8 +140,7 @@ public class Player : MonoBehaviour
 
     public void MovementInput(InputAction.CallbackContext context)
     {
-        Vector2 input = context.ReadValue<Vector2>();
-        movement = input;
+        movement = context.ReadValue<Vector2>();
     }
 
     public void JumpInput(InputAction.CallbackContext context)
