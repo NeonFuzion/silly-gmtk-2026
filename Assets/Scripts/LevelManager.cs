@@ -25,6 +25,15 @@ public class LevelManager : MonoBehaviour
         
     }
 
+    public void PrepareLevel()
+    {
+        if (levelIndex >= level.Length) return;
+        Level currentLevel = level[levelIndex];
+        sun.MoveLevel(currentLevel.transform);
+        currentLevel.SetNewRespawn(player);
+        mainCamera.SetTarget(currentLevel.transform);
+    }
+
     public void SetLevel(int level)
     {
         levelIndex = level;
@@ -38,10 +47,7 @@ public class LevelManager : MonoBehaviour
         levelComplete = false;
         onLevelComplete?.Invoke();
 
-        Level currentLevel = level[levelIndex];
-        sun.MoveLevel(currentLevel.transform);
-        currentLevel.SetNewRespawn(player);
-        mainCamera.SetTarget(currentLevel.transform);
+        PrepareLevel();
     }
 
     public void ResetLevel()
