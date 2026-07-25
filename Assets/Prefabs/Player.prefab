@@ -268,13 +268,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runAccelRate: 175
   airborneAccelRate: 200
-  runDecelRate: 175
+  runDecelRate: 225
   airborneDecelRate: 200
-  maxRunSpeed: 10
+  maxRunSpeed: 8
   jumpForce: 600
   jumpReleaseMultiplier: 0.5
   coyoteTime: 0.1
   jumpBuffer: 0.16
+  sprite: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!50 &6976723209163805293
 Rigidbody2D:
   serializedVersion: 5
