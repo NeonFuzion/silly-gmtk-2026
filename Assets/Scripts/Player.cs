@@ -9,9 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField] Animator animator;
 
     int walkAnimationHash = Animator.StringToHash("PlayerWalk"),
-        idleAnimationHash = Animator.StringToHash("PlayerIdle");
+        idleAnimationHash = Animator.StringToHash("PlayerIdle"),
+        jumpAnimationHash = Animator.StringToHash("PlayerJump"),
+        landAnimationHash = Animator.StringToHash("PlayerLand");
 
     float accelRate, decelRate, currentJumpBuffer, currentCoyoteTime;
+    bool isLanding;
 
     Vector2 movement, respawnPosition;
     new Rigidbody2D rigidbody;
@@ -33,7 +36,6 @@ public class Player : MonoBehaviour
         Movement();
         CheckJump();
         CheckKill();
-        CheckAnimation();
     }
 
     bool IsGrounded()
@@ -52,6 +54,25 @@ public class Player : MonoBehaviour
         float speedDif = targSpd - rigidbody.linearVelocityX;
         float horizontal = speedDif * currentAccelRate * Time.deltaTime;
         rigidbody.AddForce(horizontal * Vector2.right, ForceMode2D.Force);
+
+        if (movement.x != 0)
+        {
+            sprite.flipX = movement.x < 0;
+
+            if (playerState != PlayerState.Grounded) return;
+            animator.CrossFade(walkAnimationHash, 0, 0);
+        }
+        else
+        {
+            if (Mathf.Abs(rigidbody.linearVelocityX) > 0.5f) return;
+            if (playerState != PlayerState.Grounded) return;
+            animator.CrossFade(idleAnimationHash, 0, 0);
+        }
+    }
+
+    void EndLand()
+    {
+        isLanding = false;
     }
     
     void CheckJump()
@@ -66,11 +87,16 @@ public class Player : MonoBehaviour
             }
             if (playerState != PlayerState.Jumping)
             {
+                if (playerState == PlayerState.Grounded) return;
                 playerState = PlayerState.Grounded;
+                isLanding = true;
+                animator.CrossFade(landAnimationHash, 0, 0);
             }
         }
         else
         {
+            currentJumpBuffer -= Time.deltaTime;
+
             if (rigidbody.linearVelocityY >= 0) return;
             playerState = PlayerState.Airborne;
 
@@ -85,20 +111,6 @@ public class Player : MonoBehaviour
         EventManager.Instance.OnPlayerDeath.Invoke();
     }
 
-    void CheckAnimation()
-    {
-        if (movement.x != 0)
-        {
-            sprite.flipX = movement.x < 0;
-            animator.CrossFade(walkAnimationHash, 0, 0);
-        }
-        else
-        {
-            if (Mathf.Abs(rigidbody.linearVelocityX) > 0.5f) return;
-            animator.CrossFade(idleAnimationHash, 0, 0);
-        }
-    }
-
     void Jump(InputActionPhase phase)
     {
         if (phase == InputActionPhase.Started)
@@ -109,6 +121,7 @@ public class Player : MonoBehaviour
                 rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
                 currentCoyoteTime = 0;
                 playerState = PlayerState.Jumping;
+                animator.CrossFade(jumpAnimationHash, 0, 0);
             }
             else
             {
