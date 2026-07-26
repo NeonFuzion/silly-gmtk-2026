@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0e8ed448bba102e499849e21a58a8448
+guid: 7f9a779f907199b4595a4120c9af87e3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2063285542106386364
-    second: CountJump5_0
+      213: -3556516386680725352
+    second: Umbrella3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CountJump5_0
+      name: Umbrella3_0
       rect:
         serializedVersion: 2
-        x: 697
-        y: 344
-        width: 640
-        height: 1099
+        x: 159
+        y: 62
+        width: 621
+        height: 855
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cbf437fc44342ac10800000000000000
-      internalID: 2063285542106386364
+      spriteID: 8902a068037b4aec0800000000000000
+      internalID: -3556516386680725352
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CountJump5_0: 2063285542106386364
+      Umbrella3_0: -3556516386680725352
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
