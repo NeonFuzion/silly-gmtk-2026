@@ -57,6 +57,11 @@ public class LevelManager : MonoBehaviour
         level[levelIndex].ResetLevel();
     }
 
+    public void SetLevelComplete()
+    {
+        levelComplete = true;
+    }
+
     public void TransitionInput(InputAction.CallbackContext context)
     {
         if (!context.started) return;
