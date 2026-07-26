@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8127456714205628749
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 461804450680869158, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461804450680869158, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461804450680869158, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461804450680869158, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 461804450680869158, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461804450680869158, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461804450680869158, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461804450680869158, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461804450680869158, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461804450680869158, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 887553201402595214, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -8597735837147244121, guid: 132c0b8b65fa0744aa5cdc1cae3d5126, type: 3}
+    - target: {fileID: 2911909726571166787, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_ShadowShape2DProvider
+      value: 3433602780735471788
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911909726571166787, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_ShadowShape2DComponent
+      value: 
+      objectReference: {fileID: 8978979451854114499}
+    - target: {fileID: 2911909726571166787, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_ShadowMesh.m_InitialTrim
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911909726571166787, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_PreviousShadowShape2DSource
+      value: 
+      objectReference: {fileID: 1979430735188980778}
+    - target: {fileID: 2911909726571166787, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911909726571166787, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911909726571166787, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: 'managedReferences[3433602780735471787]'
+      value: Unity.RenderPipelines.Universal.2D.Runtime UnityEngine.Rendering.Universal.ShadowShape2DProvider_Collider2D
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911909726571166787, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: 'managedReferences[3433602780735471788]'
+      value: Unity.RenderPipelines.Universal.2D.Runtime UnityEngine.Rendering.Universal.ShadowShape2DProvider_SpriteRenderer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121757603557058348, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_Name
+      value: Block4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760510394266484071, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_Size.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760510394266484071, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 4.2545457
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760510394266484071, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.99636364
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+--- !u!61 &1979430735188980778 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7760510394266484071, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+  m_PrefabInstance: {fileID: 8127456714205628749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8978979451854114499 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 887553201402595214, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+  m_PrefabInstance: {fileID: 8127456714205628749}
+  m_PrefabAsset: {fileID: 0}

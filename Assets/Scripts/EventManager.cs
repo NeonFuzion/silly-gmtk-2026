@@ -4,10 +4,11 @@ using UnityEngine.Events;
 
 public class EventManager : MonoBehaviour
 {
-    [SerializeField] UnityEvent onPlayerDeath;
+    [SerializeField] UnityEvent onPlayerRespawn, onPlayerDeath;
 
     public static EventManager Instance;
 
+    public UnityEvent OnPlayerRespawn => onPlayerRespawn;
     public UnityEvent OnPlayerDeath => onPlayerDeath;
 
     void Awake()
@@ -28,8 +29,6 @@ public class EventManager : MonoBehaviour
         
     }
 
-    public void InvokeOnPlayerDeath()
-    {
-        onPlayerDeath?.Invoke();
-    }
+    public void InvokeOnPlayerRespawn() => onPlayerRespawn?.Invoke();
+    public void InvokeOnPlayerDeath() => onPlayerDeath?.Invoke();
 }

@@ -72,7 +72,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 461804450680869158, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 461804450680869158, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
       propertyPath: m_LocalScale.y
@@ -118,6 +118,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 887553201402595214, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5151742895572090404, guid: 132c0b8b65fa0744aa5cdc1cae3d5126, type: 3}
     - target: {fileID: 2911909726571166787, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
       propertyPath: m_ShadowShape2DProvider
       value: 3433602729586196588
@@ -135,8 +139,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7011319836288116218}
     - target: {fileID: 2911909726571166787, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.x
+      value: 1.3349915
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911909726571166787, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
       propertyPath: m_ShadowMesh.m_LocalBounds.m_Extent.y
-      value: 0.5
+      value: 0.45666504
       objectReference: {fileID: 0}
     - target: {fileID: 2911909726571166787, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
       propertyPath: 'managedReferences[3433602729586196586]'
@@ -157,6 +165,22 @@ PrefabInstance:
     - target: {fileID: 6121757603557058348, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760510394266484071, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760510394266484071, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760510394266484071, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.9127274
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760510394266484071, guid: ad03e832188f66a4c9a1bca2abf9ff03, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.99636364
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

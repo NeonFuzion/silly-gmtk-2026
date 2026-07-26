@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
     void CheckKill()
     {
         if (transform.position.y > -10) return;
-        EventManager.Instance.OnPlayerDeath.Invoke();
+        EventManager.Instance.OnPlayerRespawn.Invoke();
     }
 
     void Jump(InputActionPhase phase)
