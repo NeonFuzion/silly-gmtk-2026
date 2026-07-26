@@ -29,11 +29,7 @@ public class LevelManager : MonoBehaviour
 
     public void PrepareLevel()
     {
-        if (levelIndex >= level.Length)
-        {
-            onGameComplete?.Invoke();
-            return;
-        }
+        if (levelIndex >= level.Length) return;
         Level currentLevel = level[levelIndex];
         sun.MoveLevel(currentLevel.transform);
         currentLevel.SetNewRespawn(player);
@@ -48,7 +44,11 @@ public class LevelManager : MonoBehaviour
     public void EndLevel()
     {
         if (!levelComplete) return;
-        if (levelIndex >= level.Length - 1) return;
+        if (levelIndex >= level.Length - 1)
+        {
+            onGameComplete?.Invoke();
+            return;
+        }
         levelIndex++;
         text.SetText($"Days left of journey: {level.Length - levelIndex}");
         levelComplete = false;
