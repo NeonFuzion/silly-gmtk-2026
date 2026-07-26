@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -7,8 +8,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] MainCamera mainCamera;
     [SerializeField] Sun sun;
     [SerializeField] Player player;
+    [SerializeField] TextMeshProUGUI text;
     [SerializeField] Level[] level;
-    [SerializeField] UnityEvent onLevelComplete;
+    [SerializeField] UnityEvent onLevelComplete, onGameComplete;
 
     int levelIndex;
     bool levelComplete;
@@ -27,7 +29,11 @@ public class LevelManager : MonoBehaviour
 
     public void PrepareLevel()
     {
-        if (levelIndex >= level.Length) return;
+        if (levelIndex >= level.Length)
+        {
+            onGameComplete?.Invoke();
+            return;
+        }
         Level currentLevel = level[levelIndex];
         sun.MoveLevel(currentLevel.transform);
         currentLevel.SetNewRespawn(player);
@@ -44,6 +50,7 @@ public class LevelManager : MonoBehaviour
         if (!levelComplete) return;
         if (levelIndex >= level.Length - 1) return;
         levelIndex++;
+        text.SetText($"Days left of journey: {level.Length - levelIndex}");
         levelComplete = false;
         onLevelComplete?.Invoke();
 
