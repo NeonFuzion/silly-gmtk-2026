@@ -33,7 +33,8 @@ public class Slide : MonoBehaviour
             transform.position = lastPosition + progress * direction;
 
             if (progress < 1) return;
-            transform.position = lastPosition + direction;
+            lastPosition += direction;
+            transform.position = lastPosition;
             slideTime = 0;
             isMoving = false;
         }
@@ -42,15 +43,14 @@ public class Slide : MonoBehaviour
             slideTime = Mathf.Min(slideTime + Time.deltaTime, cooldown);
 
             if (slideTime < cooldown) return;
-            int lastIndex = index;
-            int nextIndex = index + indexShift;
-            if (nextIndex != Mathf.Clamp(nextIndex, 0, positions.Length - 1)) indexShift = -indexShift;
-            index = index + indexShift;
+            index += indexShift;
 
             isMoving = true;
             slideTime = 0;
-            lastPosition = positions[lastIndex];
             direction = positions[index] - lastPosition;
+
+            if (index > 0 && index < positions.Length - 1) return;
+            indexShift = -indexShift;
         }
     }
 
@@ -59,6 +59,7 @@ public class Slide : MonoBehaviour
         slideTime = 0;
         index = 0;
         indexShift = 1;
+        isMoving = true;
 
         lastPosition = positions[0];
         direction = positions[1] - lastPosition;
