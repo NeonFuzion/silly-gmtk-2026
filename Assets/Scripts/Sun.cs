@@ -16,7 +16,7 @@ public class Sun : MonoBehaviour
     void Start()
     {
         isBurning = false;
-        isFrozen = false;
+        isFrozen = true;
         resetAngle = transform.eulerAngles.z;
 
         resetPosition = transform.position;
